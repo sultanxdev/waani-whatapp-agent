@@ -1,59 +1,75 @@
-# 🚀 Zendev – AI-Powered MVP Generator
+# 🚀 Zendev.dev – AI-Powered MVP Generator
 
-> ⚠️ **Note:** This project is currently in the **development phase**. New features and improvements are being actively built. Stay tuned for updates!
-
----
-
-## 🧠 Build Your MVP in 1 Minute with AI
-
-**Zendev** is an intelligent platform that empowers **startup founders**, **indie hackers**, and **developers** to create **production-ready MVPs** from simple text prompts — in less than a minute.
-
-It automates frontend, backend, authentication, and deployment workflows so you can launch faster, validate ideas quicker, and focus on what truly matters — innovation.
+> 🎯 **Currently in Development** – MVP coming soon  
+> 🤖 Build full-stack apps from simple prompts – frontend, backend, auth, database, and deployment, all generated automatically.
 
 ---
 
-## ✨ Features
+## 🧠 What is Zendev?
 
-- ✅ **AI-Driven MVP Generation** – Instantly generate SaaS platforms, dashboards, e-commerce sites, and more from natural language prompts.
-- ✅ **One-Click Deployment** – Automatically deploy generated projects to **Vercel** (frontend) and **Railway** (backend).
-- ✅ **Authentication System** – Built-in user management using **JWT/Auth.js**.
-- ✅ **Database Integration** – Works out of the box with **MongoDB Atlas** and **PostgreSQL**.
-- ✅ **Editable Codebase** – Full control over the generated UI and backend logic.
-- ✅ **Responsive UI** – Clean, mobile-friendly interfaces built with **Tailwind CSS**.
+**Zendev.dev** is an AI-powered SaaS tool that helps solo founders, indie hackers, and developers rapidly generate production-ready MVPs using a single prompt. It generates the complete tech stack including UI, backend APIs, auth, database models, and deploy configs.
 
 ---
 
-## 🎯 Benefits & Impact
+## ✨ Key Features (Planned)
 
-- 🎯 **Rapid Idea Validation** – Go from concept to MVP in minutes.
-- 🎯 **Zero to MVP Without Coding** – Ideal for non-tech founders and early-stage product teams.
-- 🎯 **Boosts Developer Productivity** – Skip repetitive setup (auth, CRUD, layout) and focus on core features.
-- 🎯 **Reduce Time to Market** – Launch fast, gather feedback, iterate quicker.
-- 🎯 **Impressive Prototypes for Investors** – Perfect for pitch decks and client demos.
-- 🎯 **Custom & Scalable** – Tweak and extend as your project grows.
-- 🎯 **Learning Tool for Developers** – Explore full stack architecture from real projects.
-- 🎯 **Collaborate Seamlessly** – Share or deploy generated apps with teams or clients.
-- 🎯 **No More Blank Screen Syndrome** – Get started instantly with a functional foundation.
+- 🧾 **Prompt-to-App Engine** – Enter a simple product idea and get a full-stack codebase
+- 🖼️ **Frontend Generator** – Beautiful UIs with Tailwind CSS, React components, and routing
+- ⚙️ **Backend + API Generator** – Node.js + Express boilerplate with REST endpoints
+- 🔐 **Auth Module** – Auto-integrated JWT or OAuth-based authentication
+- 🛢️ **Database Schema Designer** – MongoDB models based on your app idea
+- ☁️ **One-Click Deployment** – Auto deploy to Vercel (frontend) and Render (backend)
+- 🧠 **AI Chat Assistant (Pro)** – Modify or regenerate parts of your app on the fly
 
 ---
 
-## 🛠️ Tech Stack
+## 🚀 Tech Stack
 
-| Layer        | Tech                         |
-|--------------|------------------------------|
-| Frontend     | React.js, Tailwind CSS       |
-| Backend      | Node.js, Express.js          |
-| Database     | MongoDB Atlas / PostgreSQL   |
-| AI Engine    | Prompt-to-Code (Custom Logic)|
-| Auth         | JWT / Auth.js                |
-| Deployment   | Vercel (Frontend), Railway (Backend) |
+| Layer       | Technology                     |
+|-------------|--------------------------------|
+| Frontend    | React.js + Tailwind CSS        |
+| Backend     | Node.js + Express              |
+| Database    | MongoDB Atlas                  |
+| AI Engine   | GPT-4o (OpenAI)                |
+| Deployment  | Vercel (Frontend) + Render     |
+| Auth        | JWT (default) + OAuth (coming) |
 
 ---
 
-## 🚀 Live Demo
+## 📦 Project Status
 
-🔗 [Coming Soon – Zendev.dev](https://zendev.dev/)
+🛠️ Currently building the core AI engine and code generation pipeline.
 
+- [x] Project planning & architecture ✅  
+- [x] GitHub repo initialized ✅  
+- [ ] Prompt parser + AI schema generation 🔄  
+- [ ] Code generation module ⏳  
+- [ ] Dashboard UI in progress 🎨  
+- [ ] One-click deployment integration 🔄  
+- [ ] MVP Launch 🔜
 
-🔥 *From idea to MVP in 60 seconds – Zendev turns prompts into products!*
+---
 
+## 📸 UI Sneak Peek
+
+*Coming soon...*
+
+---
+
+## 🤝 Contributing
+
+This is a solo dev project, but community ideas and feedback are welcome!  
+Open issues or drop a star ⭐ if you like the vision.
+
+---
+
+## 📬 Contact
+
+Made with 🧠 + 💻 by [Sultan Alam](https://www.linkedin.com/in/sultan-alam436/)  
+📧 sultancodess@gmail.com
+
+---
+
+## 📄 License
+
+This project is under the [MIT License](LICENSE).
