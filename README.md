@@ -36,19 +36,7 @@
 
 ---
 
-## 📦 Project Status
-
-🛠️ Currently building the core AI engine and code generation pipeline.
-
-- [x] Project planning & architecture ✅  
-- [x] GitHub repo initialized ✅  
-- [ ] Prompt parser + AI schema generation 🔄  
-- [ ] Code generation module ⏳  
-- [ ] Dashboard UI in progress 🎨  
-- [ ] One-click deployment integration 🔄  
-- [ ] MVP Launch 🔜
-
----
+-------------------------
 
 ## 📸 UI Sneak Peek
 
