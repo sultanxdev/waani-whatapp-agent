@@ -28,7 +28,7 @@ export function classifySafety(text = '') {
     };
   }
 
-  // Medical diagnosis / prescription / dosage triggers
+  // Medical diagnosis / prescription / dosage / symptoms triggers
   if (
     clean.includes('medicine') ||
     clean.includes('which cream') ||
@@ -42,13 +42,17 @@ export function classifySafety(text = '') {
     clean.includes('tretinoin') ||
     clean.includes('antibiotic') ||
     clean.includes('kya bimari hai') ||
-    clean.includes('diagnose my skin') ||
-    clean.includes('how to cure rash at home') ||
-    clean.includes('is this fungal infection or eczema') ||
-    clean.includes('can i take 20mg') ||
+    clean.includes('diagnose') ||
+    clean.includes('eczema') ||
+    clean.includes('fungal') ||
+    clean.includes('blisters') ||
+    clean.includes('rash') ||
+    clean.includes('infection') ||
+    clean.includes('itching with red') ||
     clean.includes('is this skin cancer') ||
     clean.includes('peeling skin with pus') ||
-    clean.includes('prescribe me')
+    clean.includes('prescribe') ||
+    clean.includes('dosage')
   ) {
     return {
       category: SAFETY_CATEGORIES.MEDICAL_QUESTION,
