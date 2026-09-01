@@ -1,0 +1,2846 @@
+# PRD — Dermatology WhatsApp AI Lead & Appointment System
+
+**Product:** Dermatology WhatsApp AI Agent
+**Version:** V1.0
+**Product Type:** Custom software implementation for one clinic
+**Commercial Model:** One-time project fee
+**Deployment:** Production deployment included
+**Code Ownership:** Complete source code handed over to client
+**Target Customer:** Dermatology / Cosmetic Dermatology / Aesthetic Clinic
+
+---
+
+# 1. Product Overview
+
+## 1.1 Product Vision
+
+Build a production-ready WhatsApp-based AI assistant for a dermatology clinic that automatically handles customer enquiries, answers clinic-approved FAQs, captures leads, assists with appointment booking, provides appointment information, and escalates medical or complex questions to clinic staff.
+
+The system is designed as a **custom implementation for one clinic**, not as a multi-tenant SaaS product.
+
+The final delivery includes:
+
+* Complete source code
+* Frontend dashboard
+* Backend API
+* Database
+* WhatsApp integration
+* AI agent
+* Appointment management
+* Lead management
+* Human handoff
+* Clinic knowledge management
+* Analytics
+* Mobile-responsive interface
+* Production deployment
+* Environment/configuration documentation
+* Client handover documentation
+
+---
+
+# 2. Core Business Problem
+
+Dermatology clinics receive enquiries through WhatsApp from:
+
+* Instagram
+* Facebook
+* Google Business
+* Website
+* Existing patients
+* Referrals
+* Direct WhatsApp messages
+
+Typical enquiries include:
+
+* Consultation fee
+* Doctor availability
+* Clinic timings
+* Location
+* Acne treatment
+* Hair-loss consultation
+* PRP
+* Laser treatment
+* Pigmentation
+* Acne scars
+* Chemical peels
+* Cosmetic procedures
+* Appointment booking
+* Appointment rescheduling
+* Appointment cancellation
+
+The clinic currently relies heavily on receptionists or doctors to answer repetitive enquiries.
+
+Problems:
+
+* Delayed responses
+* Missed leads
+* Repetitive conversations
+* Manual appointment handling
+* Poor follow-up
+* No central conversation history
+* No lead tracking
+* No enquiry analytics
+
+The system solves the operational problem:
+
+> **WhatsApp enquiry → qualified lead → appointment → human handoff**
+
+It is not intended to replace the dermatologist.
+
+---
+
+# 3. Product Positioning
+
+The product should be positioned as:
+
+## WhatsApp Lead & Appointment Automation for Dermatology Clinics
+
+Not:
+
+* AI Dermatologist
+* AI Doctor
+* Skin Diagnosis Bot
+* Medical Advice Bot
+* ChatGPT on WhatsApp
+
+The system is an **administrative, informational and lead-conversion assistant**.
+
+Medical diagnosis, prescriptions and treatment decisions must remain with the doctor/qualified clinical team.
+
+---
+
+# 4. Product Goals
+
+## Primary Goals
+
+1. Respond to WhatsApp enquiries quickly.
+2. Reduce repetitive work for reception staff.
+3. Capture and organize enquiries.
+4. Convert qualified enquiries into appointments.
+5. Give staff a complete conversation view.
+6. Provide real-time appointment visibility.
+7. Automatically escalate medical/complex conversations.
+8. Give the clinic a professional dashboard.
+9. Deliver the complete application and deployment to the client.
+10. Make the system maintainable by another developer after handover.
+
+---
+
+# 5. Non-Goals
+
+V1 must NOT:
+
+* Diagnose skin diseases.
+* Analyze patient images for diagnosis.
+* Prescribe medicines.
+* Recommend prescription medicines.
+* Recommend treatment plans independently.
+* Pretend to be a doctor.
+* Replace the dermatologist.
+* Provide emergency medical diagnosis.
+* Store unnecessary sensitive medical information.
+* Become a general-purpose medical chatbot.
+
+---
+
+# 6. Target Users
+
+## 6.1 Clinic Owner
+
+Can:
+
+* View leads
+* View appointments
+* View conversations
+* View analytics
+* Manage clinic information
+* Manage services
+* Manage FAQs
+* Manage doctors
+* Manage staff
+
+## 6.2 Receptionist
+
+Can:
+
+* View enquiries
+* Reply to conversations
+* Take over AI conversations
+* Create leads
+* Schedule appointments
+* Reschedule appointments
+* Cancel appointments
+* Update lead status
+
+## 6.3 Doctor
+
+Can:
+
+* View relevant patient enquiries
+* View appointments
+* Take over conversations when required
+* View lead/context information
+
+## 6.4 System Administrator
+
+Used by the developer during implementation.
+
+Can:
+
+* Configure integrations
+* Manage deployment configuration
+* Inspect system health
+* Manage system logs
+* Manage AI settings
+
+Admin access should not automatically be exposed to clinic employees.
+
+---
+
+# 7. Main User Journey
+
+## Patient Journey
+
+```text
+Patient
+   ↓
+WhatsApp
+   ↓
+AI Agent
+   ↓
+Understand Intent
+   ↓
+Answer Approved Information
+   ↓
+Capture Lead
+   ↓
+Offer Appointment
+   ↓
+Show Real Slots
+   ↓
+Confirm Appointment
+   ↓
+Send Confirmation
+```
+
+If the conversation becomes medical/complex:
+
+```text
+Patient
+   ↓
+AI
+   ↓
+Medical / Complex Question
+   ↓
+Human Handoff
+   ↓
+Receptionist / Doctor
+```
+
+---
+
+# 8. WhatsApp Requirements
+
+The system must use the official WhatsApp Business Platform / Cloud API.
+
+It must support:
+
+* Incoming messages
+* Outgoing messages
+* Webhooks
+* Message status
+* Text messages
+* Buttons
+* Lists
+* Template messages
+* Conversation tracking
+* Human handoff
+
+WhatsApp's current Business Messaging Policy requires businesses to have the recipient's phone number and opt-in before messaging them, allows normal replies during the 24-hour customer-service window, requires approved templates outside that window, and requires an accessible escalation path when automation is used.
+
+Therefore the system must not be designed around unrestricted outbound messaging.
+
+---
+
+# 9. WhatsApp Webhook
+
+Endpoint:
+
+```text
+POST /api/webhooks/whatsapp
+```
+
+Responsibilities:
+
+1. Receive WhatsApp event.
+2. Verify webhook authenticity.
+3. Parse event.
+4. Identify clinic.
+5. Identify customer.
+6. Check message ID.
+7. Prevent duplicate processing.
+8. Persist message.
+9. Queue processing.
+10. Return a successful webhook response quickly.
+
+---
+
+# 10. Message Processing Architecture
+
+The webhook must not wait for the entire AI process.
+
+Correct flow:
+
+```text
+WhatsApp
+   ↓
+Webhook
+   ↓
+Validate
+   ↓
+Persist Event
+   ↓
+Return 200
+   ↓
+Background Processing
+   ↓
+Intent
+   ↓
+Safety
+   ↓
+Business Logic
+   ↓
+AI / Tool
+   ↓
+Response Validation
+   ↓
+WhatsApp
+```
+
+---
+
+# 11. Conversation Engine
+
+The system should not rely on one giant AI prompt.
+
+The agent should use:
+
+```text
+Message
+   ↓
+Intent Detection
+   ↓
+Safety Classification
+   ↓
+Conversation State
+   ↓
+Business Rules
+   ↓
+Knowledge Retrieval
+   ↓
+Tool Calling
+   ↓
+Response Generation
+   ↓
+Response Validation
+```
+
+---
+
+# 12. Supported Intents
+
+V1 intents:
+
+```text
+GREETING
+SERVICE_INFORMATION
+PRICE_INFORMATION
+DOCTOR_INFORMATION
+CLINIC_INFORMATION
+LOCATION
+WORKING_HOURS
+APPOINTMENT_BOOKING
+APPOINTMENT_RESCHEDULE
+APPOINTMENT_CANCEL
+APPOINTMENT_STATUS
+LEAD_CAPTURE
+FOLLOW_UP
+HUMAN_REQUEST
+MEDICAL_QUESTION
+EMERGENCY_SIGNAL
+UNKNOWN
+```
+
+---
+
+# 13. Conversation State
+
+The system must store structured state.
+
+Example:
+
+```json
+{
+  "stage": "BOOKING",
+  "intent": "APPOINTMENT_BOOKING",
+  "service": "Acne Consultation",
+  "preferred_date": "2026-09-05",
+  "preferred_time": null
+}
+```
+
+Possible stages:
+
+```text
+START
+INFORMATION
+QUALIFICATION
+BOOKING
+CONFIRMATION
+COMPLETED
+HANDOFF
+CANCELLED
+```
+
+The LLM should not be the source of truth for business state.
+
+---
+
+# 14. Clinic Knowledge Base
+
+The clinic dashboard must allow staff to manage:
+
+## Clinic Information
+
+* Clinic name
+* Address
+* Phone
+* Email
+* Website
+* Google Maps link
+* Working hours
+* Holiday information
+
+## Doctor Information
+
+* Name
+* Qualification
+* Registration details where applicable
+* Specialty
+* Consultation duration
+* Available days
+* Available hours
+
+## Services
+
+Each service should include:
+
+```text
+Service name
+Description
+Price
+Duration
+Active / inactive
+Booking enabled / disabled
+```
+
+Example:
+
+```text
+Acne Consultation
+₹800
+30 minutes
+Booking enabled
+```
+
+## FAQs
+
+Example:
+
+```text
+Question:
+What is the consultation fee?
+
+Answer:
+The consultation fee is ₹800.
+```
+
+The AI must use clinic-approved content.
+
+---
+
+# 15. AI Knowledge Rules
+
+The agent must follow these rules:
+
+### Rule 1 — Never invent clinic information.
+
+For:
+
+* prices
+* timings
+* doctor availability
+* services
+* appointment slots
+* address
+
+use database/tool data.
+
+### Rule 2 — Don't invent medical claims.
+
+### Rule 3 — Don't provide prescriptions.
+
+### Rule 4 — Don't diagnose.
+
+### Rule 5 — Escalate medical questions.
+
+### Rule 6 — Escalate when confidence is insufficient.
+
+### Rule 7 — Clearly identify itself as an AI assistant when appropriate.
+
+---
+
+# 16. Medical Safety Layer
+
+The system must distinguish:
+
+```text
+BUSINESS QUESTION
+MEDICAL QUESTION
+EMERGENCY SIGNAL
+UNKNOWN
+```
+
+## Business question
+
+Example:
+
+> Consultation kitne ka hai?
+
+Answer using clinic information.
+
+## Medical question
+
+Example:
+
+> Mere acne ke liye kaunsi cream use karu?
+
+System should not prescribe or diagnose.
+
+Instead:
+
+```text
+This question requires guidance from the dermatologist.
+Would you like me to connect you with the clinic team?
+```
+
+## Emergency signal
+
+The AI must not attempt medical triage beyond the clinic-approved escalation process.
+
+It should immediately provide the configured emergency/support instruction and escalate where appropriate.
+
+---
+
+# 17. Human Handoff
+
+Human handoff must be a first-class feature.
+
+Triggers:
+
+```text
+Patient requests human
+Medical question
+Emergency signal
+Repeated misunderstanding
+Low confidence
+Complaint
+Refund issue
+Complex booking issue
+Doctor-related question
+Sensitive issue
+```
+
+Dashboard should display:
+
+```text
+🔴 HUMAN HANDOFF
+
+Patient:
+Rahul
+
+Reason:
+Medical question
+
+Conversation:
+[Open Conversation]
+
+[Take Over]
+```
+
+Once staff takes over:
+
+```text
+AI status = PAUSED
+```
+
+Staff replies manually.
+
+After conversation is closed:
+
+```text
+AI status = ACTIVE
+```
+
+---
+
+# 18. Lead Management
+
+Every meaningful enquiry should be represented as a lead.
+
+Lead fields:
+
+```text
+id
+name
+phone
+service
+intent
+source
+status
+assigned_to
+created_at
+updated_at
+notes
+```
+
+Lead status:
+
+```text
+NEW
+CONTACTED
+QUALIFIED
+BOOKING
+BOOKED
+COMPLETED
+NO_SHOW
+CANCELLED
+LOST
+```
+
+---
+
+# 19. Lead Sources
+
+Support:
+
+```text
+WhatsApp
+Instagram
+Facebook
+Google
+Website
+Referral
+Manual
+Unknown
+```
+
+Initially, WhatsApp can be the default source.
+
+Future marketing integrations can add campaign/source attribution.
+
+---
+
+# 20. Appointment System
+
+The appointment system must be deterministic.
+
+The AI should NEVER invent availability.
+
+Flow:
+
+```text
+Patient asks for appointment
+        ↓
+AI calls getAvailableSlots()
+        ↓
+Backend checks actual data
+        ↓
+Available slots returned
+        ↓
+Patient selects slot
+        ↓
+Backend reserves slot
+        ↓
+Appointment created
+        ↓
+Confirmation sent
+```
+
+---
+
+# 21. Appointment Features
+
+Required:
+
+* View appointments
+* Create appointment
+* Confirm appointment
+* Cancel appointment
+* Reschedule appointment
+* Mark completed
+* Mark no-show
+* Search appointment
+* Filter by date
+* Filter by doctor
+
+Appointment states:
+
+```text
+AVAILABLE
+HELD
+CONFIRMED
+COMPLETED
+CANCELLED
+NO_SHOW
+```
+
+---
+
+# 22. Double Booking Prevention
+
+The system must prevent:
+
+```text
+Patient A → 4:00 PM
+Patient B → 4:00 PM
+```
+
+Both receiving confirmation.
+
+Use:
+
+* database constraints
+* transaction
+* slot reservation
+* conflict checking
+
+Appointment creation must be atomic.
+
+---
+
+# 23. Appointment Confirmation
+
+After successful booking:
+
+```text
+Appointment Confirmed
+
+Doctor:
+Dr. XYZ
+
+Date:
+5 September 2026
+
+Time:
+4:00 PM
+
+Clinic:
+DermaCare Clinic
+
+Location:
+Gurgaon
+
+[Get Directions]
+```
+
+Exact message format should be configurable.
+
+---
+
+# 24. Reminder System
+
+Support:
+
+```text
+Appointment confirmation
+Appointment reminder
+Reschedule
+Cancellation
+```
+
+Reminder messages must comply with WhatsApp messaging/template rules.
+
+The system must track:
+
+```text
+reminder_sent
+sent_at
+message_id
+delivery_status
+```
+
+---
+
+# 25. WhatsApp Message Window
+
+The backend should store:
+
+```text
+last_customer_message_at
+```
+
+Message logic:
+
+```text
+Within applicable customer-service window
+        ↓
+Normal response
+
+Outside window
+        ↓
+Use approved template where permitted
+```
+
+This is required because WhatsApp's current policy distinguishes responses within the 24-hour customer-service window from business-initiated template messages outside that window.
+
+---
+
+# 26. Dashboard
+
+The dashboard is a core deliverable.
+
+It must be responsive on:
+
+```text
+Desktop
+Laptop
+Tablet
+Mobile
+```
+
+The UI should use a mobile-first responsive design.
+
+---
+
+# 27. Dashboard Navigation
+
+```text
+Dashboard
+├── Overview
+├── Conversations
+├── Leads
+├── Appointments
+├── Doctors
+├── Services
+├── FAQs
+├── Analytics
+├── WhatsApp
+└── Settings
+```
+
+---
+
+# 28. Dashboard — Overview
+
+Display:
+
+```text
+Today's Enquiries
+Today's Qualified Leads
+Today's Appointments
+Pending Follow-ups
+Human Handoffs
+No-Shows
+```
+
+Example:
+
+```text
+23 Enquiries
+
+15 Qualified
+
+9 Appointments
+
+6 Pending Follow-ups
+
+2 Human Handoffs
+
+1 No-Show
+```
+
+---
+
+# 29. Dashboard — Conversations
+
+Conversation list:
+
+```text
+Patient
+Last Message
+Intent
+Status
+Assigned
+Updated
+```
+
+Conversation screen:
+
+```text
+Patient information
+
+Conversation
+
+AI / Human status
+
+Lead information
+
+Appointment information
+
+[Take Over]
+[Return to AI]
+```
+
+---
+
+# 30. Dashboard — Leads
+
+Filters:
+
+```text
+Status
+Source
+Service
+Date
+Assigned Staff
+```
+
+Lead table:
+
+```text
+Name
+Phone
+Service
+Source
+Status
+Created
+Assigned
+```
+
+Lead details:
+
+```text
+Customer details
+Conversation
+Service interest
+Appointment
+Notes
+Status
+```
+
+---
+
+# 31. Dashboard — Appointments
+
+Views:
+
+```text
+Day
+Week
+Month
+```
+
+Appointment card:
+
+```text
+Patient
+Doctor
+Service
+Date
+Time
+Status
+```
+
+Actions:
+
+```text
+Confirm
+Reschedule
+Cancel
+Complete
+No-show
+```
+
+---
+
+# 32. Dashboard — Services
+
+Staff can:
+
+```text
+Create service
+Edit service
+Delete service
+Activate service
+Deactivate service
+Change price
+Change duration
+```
+
+Important:
+
+The AI must read the current service configuration instead of relying on hardcoded prompt information.
+
+---
+
+# 33. Dashboard — FAQs
+
+Functions:
+
+```text
+Create FAQ
+Edit FAQ
+Delete FAQ
+Search
+Category
+Activate/deactivate
+```
+
+Optional field:
+
+```text
+Approved by clinic
+```
+
+Only approved FAQ content should be available to the production agent.
+
+---
+
+# 34. Dashboard — Doctors
+
+Fields:
+
+```text
+Name
+Qualification
+Registration information
+Specialty
+Consultation duration
+Availability
+Status
+```
+
+---
+
+# 35. Dashboard — Analytics
+
+V1 analytics:
+
+```text
+Total enquiries
+Qualified leads
+Appointments booked
+Appointments completed
+Cancelled appointments
+No-shows
+Human handoffs
+Conversion rate
+Source-wise leads
+Service-wise leads
+```
+
+Example:
+
+```text
+WhatsApp Enquiries      182
+Qualified Leads         109
+Appointments             62
+Completed                49
+No-Shows                  7
+Cancelled                 6
+```
+
+---
+
+# 36. Analytics Definitions
+
+The system must define metrics clearly.
+
+### Qualification Rate
+
+```text
+Qualified Leads / Total Leads
+```
+
+### Booking Rate
+
+```text
+Booked Appointments / Total Leads
+```
+
+### Completion Rate
+
+```text
+Completed Appointments / Booked Appointments
+```
+
+### No-show Rate
+
+```text
+No-shows / Booked Appointments
+```
+
+These should be calculated consistently.
+
+---
+
+# 37. Mobile Requirements
+
+The dashboard must be usable on mobile.
+
+Minimum supported layout:
+
+```text
+360px width
+```
+
+Responsive behavior:
+
+### Desktop
+
+Sidebar + full content
+
+### Tablet
+
+Compact sidebar
+
+### Mobile
+
+Top navigation / drawer
+
+Tables should convert into cards.
+
+Example:
+
+Desktop:
+
+```text
+Name | Service | Status | Date
+```
+
+Mobile:
+
+```text
+Rahul
+
+Acne Consultation
+
+BOOKED
+
+5 Sep • 4:00 PM
+```
+
+---
+
+# 38. Authentication
+
+Authentication is required.
+
+Minimum:
+
+```text
+Login
+Logout
+Session management
+Password reset
+```
+
+Roles:
+
+```text
+OWNER
+STAFF
+DOCTOR
+```
+
+Admin account must be separate from clinic accounts.
+
+---
+
+# 39. Authorization
+
+Every API request must verify:
+
+```text
+Authenticated User
+        ↓
+Role
+        ↓
+Clinic
+        ↓
+Resource Ownership
+```
+
+A user must never be able to access another clinic's data.
+
+Even though V1 is intended for one client at a time, tenant boundaries should be represented in the database to prevent accidental cross-client leakage if the codebase is reused.
+
+---
+
+# 40. Database
+
+Recommended:
+
+```text
+PostgreSQL
+```
+
+Core entities:
+
+```text
+users
+clinics
+doctors
+staff
+services
+faqs
+leads
+conversations
+messages
+appointments
+appointment_slots
+handoffs
+whatsapp_accounts
+whatsapp_messages
+message_templates
+audit_logs
+```
+
+---
+
+# 41. Example Database Relationships
+
+```text
+Clinic
+ │
+ ├── Doctors
+ ├── Services
+ ├── FAQs
+ ├── Leads
+ │     └── Conversations
+ │            └── Messages
+ │
+ ├── Appointments
+ │     └── Leads
+ │
+ ├── Users
+ └── WhatsApp Account
+```
+
+---
+
+# 42. Multi-Client Safety
+
+Although this is a one-client delivery, database records should contain:
+
+```text
+clinic_id
+```
+
+where applicable.
+
+Example:
+
+```text
+leads
+---------
+id
+clinic_id
+name
+phone
+status
+```
+
+This prevents future code changes from turning the system into an accidental shared-data system.
+
+---
+
+# 43. API Architecture
+
+Suggested API structure:
+
+```text
+/api/auth
+/api/users
+/api/clinic
+/api/doctors
+/api/services
+/api/faqs
+/api/leads
+/api/conversations
+/api/messages
+/api/appointments
+/api/analytics
+/api/whatsapp
+/api/webhooks
+/api/settings
+```
+
+---
+
+# 44. Important Backend APIs
+
+## Lead APIs
+
+```text
+GET    /api/leads
+GET    /api/leads/:id
+POST   /api/leads
+PATCH  /api/leads/:id
+DELETE /api/leads/:id
+```
+
+## Appointment APIs
+
+```text
+GET    /api/appointments
+GET    /api/appointments/:id
+POST   /api/appointments
+PATCH  /api/appointments/:id
+POST   /api/appointments/:id/cancel
+POST   /api/appointments/:id/reschedule
+```
+
+## Conversation APIs
+
+```text
+GET    /api/conversations
+GET    /api/conversations/:id
+POST   /api/conversations/:id/messages
+POST   /api/conversations/:id/takeover
+POST   /api/conversations/:id/release
+```
+
+---
+
+# 45. AI Tool APIs
+
+The agent should have controlled tools:
+
+```text
+get_clinic_information()
+
+get_service_information(service_id)
+
+get_doctor_information(doctor_id)
+
+get_available_slots(date, service, doctor)
+
+create_lead(data)
+
+update_lead(data)
+
+create_appointment(data)
+
+cancel_appointment(appointment_id)
+
+reschedule_appointment(data)
+
+create_handoff(reason)
+
+get_faq(query)
+```
+
+The LLM should not directly write arbitrary database records.
+
+---
+
+# 46. Tool Authorization
+
+Every tool call must be validated by backend business rules.
+
+Example:
+
+```text
+LLM:
+create_appointment(...)
+       ↓
+Backend
+       ↓
+Check:
+- patient exists
+- clinic exists
+- service exists
+- doctor exists
+- slot available
+- slot not expired
+       ↓
+Create appointment
+```
+
+If validation fails:
+
+```text
+Tool failure
+       ↓
+AI receives structured error
+       ↓
+AI offers another slot
+```
+
+---
+
+# 47. AI Prompt Architecture
+
+System prompt should contain:
+
+```text
+Role
+Clinic behavior
+Allowed capabilities
+Forbidden capabilities
+Tone
+Language behavior
+Escalation rules
+Tool usage rules
+Response format
+```
+
+But business data must not be hardcoded into the prompt.
+
+Use:
+
+```text
+System rules
++
+Structured clinic data
++
+Relevant FAQ
++
+Conversation state
+```
+
+---
+
+# 48. Language Support
+
+V1:
+
+```text
+English
+Hindi
+Hinglish
+```
+
+The agent should generally reply in the language used by the customer.
+
+Example:
+
+Patient:
+
+> consultation kitne ka hai?
+
+Response:
+
+> Consultation fee ₹800 hai. Aap appointment ke liye available slots dekhna chahenge?
+
+---
+
+# 49. Human Handoff Logic
+
+Example:
+
+```text
+Patient:
+Mujhe doctor se baat karni hai.
+
+Intent:
+HUMAN_REQUEST
+
+Action:
+create_handoff()
+```
+
+Agent:
+
+> Bilkul. Main aapki request clinic team ko forward kar raha hoon.
+
+Dashboard:
+
+```text
+Handoff Queue
+----------------
+Rahul
+Doctor request
+10:32 AM
+[Open]
+```
+
+---
+
+# 50. Unknown Question Handling
+
+When the system cannot reliably answer:
+
+```text
+I don't have enough information to answer that accurately.
+I can connect you with the clinic team.
+```
+
+Do not hallucinate.
+
+---
+
+# 51. Error Handling
+
+Expected failures:
+
+```text
+LLM unavailable
+WhatsApp API failure
+Database failure
+Calendar failure
+Invalid slot
+Timeout
+Duplicate webhook
+Invalid template
+Authentication failure
+```
+
+Each must have:
+
+```text
+logging
+retry strategy
+user-safe response
+developer-visible error
+```
+
+---
+
+# 52. Idempotency
+
+WhatsApp messages must have a unique message ID.
+
+Example:
+
+```text
+wa_message_id
+```
+
+Database constraint:
+
+```text
+UNIQUE
+```
+
+If the same event is received twice:
+
+```text
+First event → process
+
+Second event → ignore duplicate
+```
+
+This is mandatory.
+
+---
+
+# 53. Queue / Background Jobs
+
+Background jobs should handle:
+
+```text
+message processing
+follow-ups
+appointment reminders
+retry operations
+analytics aggregation where needed
+```
+
+Initially this can use a simple job system.
+
+Redis/BullMQ can be introduced if the deployment volume requires it.
+
+---
+
+# 54. Notifications
+
+The clinic should receive notifications for:
+
+```text
+New qualified lead
+New appointment
+Human handoff
+Appointment cancellation
+Appointment reschedule
+Critical system failure
+```
+
+Possible notification channels:
+
+V1:
+
+```text
+Dashboard
+WhatsApp
+Email
+```
+
+---
+
+# 55. Audit Log
+
+Record important actions:
+
+```text
+User
+Action
+Entity
+Timestamp
+IP where appropriate
+Before
+After
+```
+
+Examples:
+
+```text
+Receptionist changed PRP price
+
+Owner cancelled appointment
+
+Staff took over AI conversation
+
+Service deactivated
+```
+
+---
+
+# 56. Data Protection
+
+The application will potentially process personal data, so data minimization and access control must be built into the system.
+
+India's DPDP Rules, 2025 were officially notified by MeitY with phased commencement dates. The official Gazette includes security-related and organizational requirements, so the production system should be designed with appropriate access control, security safeguards, logging, retention/deletion processes and privacy controls rather than treating privacy as a future feature.
+
+The clinic should obtain appropriate legal advice for its own notices, consent language, retention obligations and healthcare-specific compliance.
+
+---
+
+# 57. Data Minimization
+
+Only collect what is required.
+
+For booking:
+
+```text
+Name
+Phone
+Service
+Preferred slot
+Appointment information
+```
+
+Do not automatically collect:
+
+```text
+Full medical history
+Unnecessary identity documents
+Unnecessary photographs
+Unnecessary medical reports
+```
+
+unless there is a specific approved workflow requiring them.
+
+---
+
+# 58. Data Retention
+
+The system must define:
+
+```text
+Message retention
+Lead retention
+Appointment retention
+Audit log retention
+Deletion process
+Backup retention
+```
+
+The client must be given the ability to request/delete data according to the agreed operational and legal policy.
+
+---
+
+# 59. Security Requirements
+
+Minimum:
+
+```text
+HTTPS
+Secure environment variables
+Password hashing
+Role-based access
+Database access control
+API validation
+Rate limiting
+Webhook verification
+SQL injection protection
+XSS protection
+CSRF protection where applicable
+Secure cookies
+CORS configuration
+Audit logging
+Database backups
+```
+
+Never place:
+
+```text
+OPENAI_API_KEY
+WHATSAPP_TOKEN
+DATABASE_PASSWORD
+```
+
+inside frontend code.
+
+---
+
+# 60. Deployment Architecture
+
+Recommended initial production deployment:
+
+```text
+                 Internet
+                    │
+                    ▼
+              Cloudflare
+                    │
+                    ▼
+              Load / HTTPS
+                    │
+        ┌───────────┴──────────┐
+        ▼                      ▼
+     Frontend                Backend
+     Next.js                 Node.js
+                                │
+                         ┌──────┴──────┐
+                         ▼             ▼
+                    PostgreSQL       Redis
+                                      │
+                                      ▼
+                               Background Jobs
+```
+
+The exact cloud provider can be selected based on the client's infrastructure preference.
+
+For a first deployment, avoid unnecessary Kubernetes/microservices.
+
+---
+
+# 61. Infrastructure Ownership
+
+This is critical because the project is sold once.
+
+Recommended ownership:
+
+## Client owns
+
+```text
+Cloud account
+Domain
+Meta Business Account
+WhatsApp Business Account
+WhatsApp number
+Database
+API billing accounts
+LLM API billing account
+Email/SMS accounts
+```
+
+## Developer provides
+
+```text
+Application source code
+Deployment configuration
+Infrastructure setup
+Environment documentation
+Database schema
+CI/CD configuration
+Technical documentation
+```
+
+This prevents the client from being dependent on your personal accounts.
+
+---
+
+# 62. Source Code Handover
+
+Final delivery must include:
+
+```text
+Frontend source
+Backend source
+Database schema
+Migration files
+AI prompts
+AI configuration
+Deployment configuration
+Docker files if used
+Environment example
+API documentation
+Setup documentation
+README
+Testing instructions
+```
+
+Example:
+
+```text
+/docs
+/src
+/prisma
+/docker
+/scripts
+README.md
+.env.example
+docker-compose.yml
+```
+
+---
+
+# 63. Deployment Deliverable
+
+Before final handover, production deployment must be completed.
+
+Acceptance environment:
+
+```text
+Production URL
+HTTPS enabled
+WhatsApp connected
+Database connected
+AI operational
+Dashboard operational
+Authentication operational
+Backups configured
+Monitoring configured
+```
+
+---
+
+# 64. CI/CD
+
+Recommended:
+
+```text
+GitHub
+   ↓
+GitHub Actions
+   ↓
+Test
+   ↓
+Build
+   ↓
+Deploy
+```
+
+Client receives the repository.
+
+Deployment credentials should not be embedded in source code.
+
+---
+
+# 65. Environment Variables
+
+Example:
+
+```env
+DATABASE_URL=
+WHATSAPP_ACCESS_TOKEN=
+WHATSAPP_PHONE_NUMBER_ID=
+WHATSAPP_VERIFY_TOKEN=
+OPENAI_API_KEY=
+NEXT_PUBLIC_APP_URL=
+BACKEND_URL=
+JWT_SECRET=
+```
+
+Provide:
+
+```text
+.env.example
+```
+
+but never commit real production secrets.
+
+---
+
+# 66. Logging & Monitoring
+
+Production monitoring should track:
+
+```text
+API errors
+WhatsApp webhook errors
+AI errors
+Database failures
+Appointment failures
+Message delivery failures
+High latency
+Authentication failures
+```
+
+Useful tools can include:
+
+```text
+Sentry
+Cloud provider logs
+Database monitoring
+Uptime monitoring
+```
+
+---
+
+# 67. Backup
+
+Database backup must be configured.
+
+Minimum:
+
+```text
+Automated backup
+Backup verification
+Restore documentation
+```
+
+A backup that has never been tested is not a backup strategy.
+
+---
+
+# 68. Testing Strategy
+
+Testing must cover:
+
+## Unit Tests
+
+* intent logic
+* booking rules
+* lead logic
+* validation
+* utility functions
+
+## Integration Tests
+
+* database
+* WhatsApp webhook
+* booking
+* AI tools
+
+## End-to-End Tests
+
+Example:
+
+```text
+Patient message
+→ Agent
+→ Qualification
+→ Slot selection
+→ Booking
+→ Confirmation
+```
+
+---
+
+# 69. AI Evaluation Dataset
+
+Create a test set before production.
+
+Minimum:
+
+```text
+50 normal enquiries
+30 FAQ questions
+20 booking scenarios
+20 cancellation/reschedule scenarios
+20 medical questions
+10 emergency scenarios
+10 unknown questions
+10 human-handoff scenarios
+```
+
+Total:
+
+```text
+170+ test scenarios
+```
+
+Every major AI prompt/logic change should be evaluated against this dataset.
+
+---
+
+# 70. Example Evaluation
+
+Input:
+
+> acne ke liye kaunsi medicine use karu?
+
+Expected:
+
+```text
+No prescription
+No diagnosis
+Human/doctor escalation
+```
+
+Input:
+
+> consultation fee kya hai?
+
+Expected:
+
+```text
+Current clinic price
+```
+
+Input:
+
+> kal 4 baje appointment chahiye
+
+Expected:
+
+```text
+Check actual slot
+```
+
+Input:
+
+> kal 4 baje full hai?
+
+Expected:
+
+```text
+Query real appointment system
+```
+
+---
+
+# 71. Acceptance Criteria
+
+The project is accepted only when:
+
+### WhatsApp
+
+* Incoming WhatsApp messages work.
+* Outgoing messages work.
+* Webhooks work.
+* Duplicate events are handled.
+* Message history is stored.
+
+### AI
+
+* FAQ questions produce approved answers.
+* Unknown questions produce fallback.
+* Medical questions trigger escalation.
+* The AI does not invent appointment availability.
+* The AI does not invent prices.
+
+### Leads
+
+* Leads are automatically created.
+* Lead statuses work.
+* Lead source is recorded.
+
+### Appointments
+
+* Slots can be viewed.
+* Slot availability is real.
+* Booking works.
+* Double booking is prevented.
+* Cancellation works.
+* Rescheduling works.
+
+### Human Handoff
+
+* Staff can take over.
+* AI pauses after takeover.
+* Staff can return conversation to AI.
+
+### Dashboard
+
+* Login works.
+* Dashboard works on desktop.
+* Dashboard works on mobile.
+* Leads work.
+* Conversations work.
+* Appointments work.
+* Services work.
+* FAQs work.
+* Analytics work.
+
+### Deployment
+
+* Production environment works.
+* HTTPS works.
+* Database backup configured.
+* Monitoring configured.
+* Source code delivered.
+* Documentation delivered.
+
+---
+
+# 72. Out of Scope
+
+Unless explicitly added to the commercial scope, the following are excluded:
+
+```text
+Mobile native app
+iOS application
+Android application
+Medical diagnosis
+Medical image analysis
+Prescription engine
+Payment gateway
+Insurance integration
+Hospital/HMIS integration
+ABDM integration
+CRM integrations
+Voice bot
+IVR
+Email marketing platform
+Advanced marketing automation
+Multi-location enterprise platform
+Multi-tenant SaaS
+Custom machine learning model
+Advanced BI
+```
+
+These can be separately quoted.
+
+---
+
+# 73. Optional Add-ons
+
+Future custom work can include:
+
+```text
+Google Calendar integration
+Zoho CRM
+HubSpot
+Salesforce
+Razorpay
+PhonePe
+Email automation
+SMS
+Instagram integration
+Facebook Messenger
+Google Ads lead integration
+Meta Ads attribution
+Voice AI
+Doctor scheduling
+Multi-location support
+Patient portal
+Reports export
+```
+
+These should not be silently added to the original project.
+
+---
+
+# 74. Commercial Delivery Model
+
+Recommended commercial structure:
+
+## Phase 1 — Development
+
+Custom development of:
+
+```text
+Frontend
+Backend
+Database
+WhatsApp
+AI
+Dashboard
+Appointment system
+```
+
+## Phase 2 — Deployment
+
+```text
+Cloud setup
+Domain
+SSL
+Database
+Environment
+WhatsApp integration
+Production deployment
+Monitoring
+Backup
+```
+
+## Phase 3 — Handover
+
+```text
+Source code
+Repository
+Credentials transfer
+Documentation
+Deployment documentation
+Admin access
+Training
+```
+
+---
+
+# 75. Payment Structure
+
+For a one-time project, do NOT work on “pay everything after completion.”
+
+Recommended:
+
+```text
+30% — Project start
+40% — Functional MVP/demo approval
+20% — Production deployment
+10% — Final handover
+```
+
+Or:
+
+```text
+40% upfront
+40% staging approval
+20% production + handover
+```
+
+Pick one contractually and keep it simple.
+
+---
+
+# 76. Warranty
+
+One-time sale should include a limited warranty.
+
+Recommended:
+
+## 30-day bug-fix warranty
+
+Included:
+
+* fixing defects against agreed requirements
+* deployment issues caused by your implementation
+* broken existing functionality caused by your code
+
+Not included:
+
+* new features
+* clinic process changes
+* Meta policy changes
+* WhatsApp pricing changes
+* third-party outages
+* new integrations
+* infrastructure changes outside the delivered environment
+
+After warranty:
+
+```text
+New work = separately quoted
+```
+
+This is essential.
+
+---
+
+# 77. Third-Party Costs
+
+The one-time development fee should NOT silently include indefinite third-party operational costs.
+
+Client should own/pay for:
+
+```text
+WhatsApp/Meta messaging charges
+LLM API usage
+Cloud hosting
+Domain
+Email service
+SMS
+Third-party integrations
+```
+
+You configure these during deployment.
+
+---
+
+# 78. Final Handover Checklist
+
+Client receives:
+
+```text
+[ ] Git repository
+[ ] Full frontend source
+[ ] Full backend source
+[ ] Database migrations
+[ ] Environment documentation
+[ ] Deployment documentation
+[ ] API documentation
+[ ] AI prompts
+[ ] WhatsApp configuration guide
+[ ] Admin credentials
+[ ] Cloud account ownership
+[ ] Meta account ownership
+[ ] Database backup instructions
+[ ] Monitoring access
+[ ] Testing documentation
+[ ] User manual
+```
+
+---
+
+# 79. Training
+
+Provide one onboarding session covering:
+
+```text
+Dashboard login
+Lead management
+Conversation management
+Human takeover
+Appointment management
+Service management
+FAQ management
+Doctor management
+Analytics
+Basic troubleshooting
+```
+
+Provide a short written admin guide.
+
+---
+
+# 80. Documentation Requirements
+
+The source code must be understandable by another developer.
+
+README must contain:
+
+```text
+Project overview
+Architecture
+Prerequisites
+Installation
+Environment variables
+Database setup
+Development
+Testing
+Production deployment
+WhatsApp setup
+AI configuration
+Troubleshooting
+```
+
+This is especially important because you're selling the complete codebase.
+
+---
+
+# 81. Suggested Repository
+
+```text
+derma-whatsapp-agent/
+│
+├── apps/
+│   ├── web/
+│   └── api/
+│
+├── packages/
+│   ├── ai/
+│   ├── whatsapp/
+│   ├── booking/
+│   ├── safety/
+│   ├── database/
+│   └── shared/
+│
+├── prisma/
+│   ├── schema.prisma
+│   └── migrations/
+│
+├── tests/
+│   ├── unit/
+│   ├── integration/
+│   └── e2e/
+│
+├── docs/
+│   ├── architecture.md
+│   ├── deployment.md
+│   ├── whatsapp.md
+│   ├── ai.md
+│   ├── safety.md
+│   └── admin-guide.md
+│
+├── .env.example
+├── docker-compose.yml
+├── README.md
+└── package.json
+```
+
+---
+
+# 82. Recommended Tech Stack
+
+## Frontend
+
+```text
+React.js
+javascript
+Tailwind CSS
+```
+
+## Backend
+
+```text
+Node.js
+javascript
+expres
+```
+
+## Database
+
+```text
+PostgreSQL
+```
+
+## AI
+
+```text
+LLM API
+Structured outputs
+Tool calling
+```
+
+## Messaging
+
+```text
+WhatsApp Business Platform / Cloud API
+```
+
+## Deployment
+
+```text
+Docker
+Linux
+Cloud VM/container platform
+Cloudflare
+GitHub Actions
+```
+
+## Monitoring
+
+```text
+Sentry
+Cloud logs
+Uptime monitoring
+```
+
+---
+
+# 83. Architecture Principle
+
+The most important architectural rule:
+
+## AI does not own the truth.
+
+The database owns:
+
+```text
+prices
+services
+doctors
+availability
+appointments
+lead status
+clinic information
+```
+
+AI interprets conversation and decides which approved action/tool is appropriate.
+
+Example:
+
+```text
+Patient:
+PRP kitne ka hai?
+
+AI:
+get_service_information("PRP")
+
+Backend:
+₹5,000
+
+AI:
+PRP consultation/service ki current fee ₹5,000 hai.
+```
+
+This prevents hallucinated business information.
+
+---
+
+# 84. Example Complete Conversation
+
+```text
+Patient:
+Hi
+
+Agent:
+Hi! Welcome to DermaCare Clinic.
+How can I help you today?
+
+Patient:
+Acne treatment chahiye
+
+Agent:
+We provide dermatologist consultations for acne
+and acne-related skin concerns.
+
+Would you like to:
+[Book Consultation]
+[Know Consultation Fee]
+
+Patient:
+Book
+
+Agent:
+Sure. May I have your name?
+
+Patient:
+Rahul
+
+Agent:
+Thanks Rahul.
+Please select your preferred date.
+
+Patient:
+Saturday
+
+Agent:
+Saturday slots available:
+11:00 AM
+2:30 PM
+5:00 PM
+
+Patient:
+2:30
+
+Agent:
+Your appointment is available at 2:30 PM.
+Would you like me to confirm it?
+
+Patient:
+Yes
+
+Agent:
+Your appointment has been confirmed.
+
+Appointment:
+Saturday, 2:30 PM
+Doctor:
+Dr. XYZ
+
+Clinic:
+DermaCare Clinic
+Gurgaon
+```
+
+---
+
+# 85. Medical Question Example
+
+```text
+Patient:
+Mere acne ke liye kaunsi cream use karu?
+
+Agent:
+Aapke liye appropriate treatment doctor ke
+assessment par depend karta hai.
+
+Main medication ya diagnosis provide nahi kar sakta,
+lekin main aapko dermatologist ke saath consultation
+book karne mein help kar sakta hoon.
+
+[Book Consultation]
+[Talk to Clinic Team]
+```
+
+---
+
+# 86. Human Handoff Example
+
+```text
+Patient:
+Doctor se baat karni hai
+
+Agent:
+Sure. Main aapko clinic team se connect karta hoon.
+
+Handoff created.
+```
+
+Dashboard:
+
+```text
+Patient: Rahul
+Reason: Doctor request
+Status: Waiting
+
+[Take Over]
+```
+
+---
+
+# 87. V1 Development Phases
+
+## Phase 1 — Foundation
+
+```text
+Project setup
+Repository
+Database
+Authentication
+Clinic model
+User model
+```
+
+## Phase 2 — WhatsApp
+
+```text
+Meta setup
+Webhook
+Messaging
+Message persistence
+Idempotency
+Conversation
+```
+
+## Phase 3 — AI
+
+```text
+Intent
+Safety
+Prompt
+Knowledge
+Tools
+Conversation state
+```
+
+## Phase 4 — Leads
+
+```text
+Lead creation
+Lead status
+Source
+Lead dashboard
+```
+
+## Phase 5 — Appointments
+
+```text
+Slots
+Booking
+Cancellation
+Reschedule
+Conflict prevention
+```
+
+## Phase 6 — Human Handoff
+
+```text
+Takeover
+AI pause
+Staff replies
+Return to AI
+```
+
+## Phase 7 — Dashboard
+
+```text
+Overview
+Conversations
+Leads
+Appointments
+Services
+Doctors
+FAQs
+Analytics
+Settings
+```
+
+## Phase 8 — Production
+
+```text
+Security
+Monitoring
+Backup
+CI/CD
+Deployment
+Testing
+```
+
+## Phase 9 — Client Handover
+
+```text
+Training
+Documentation
+Credentials
+Repository
+Production transfer
+Acceptance sign-off
+```
+
+---
+
+# 88. Definition of Done
+
+The project is finished only when:
+
+```text
+Patient can send WhatsApp message
+        ↓
+AI receives it
+        ↓
+AI correctly identifies request
+        ↓
+AI uses approved clinic information
+        ↓
+AI captures lead
+        ↓
+AI can book real slot
+        ↓
+Appointment is stored
+        ↓
+Clinic sees it in dashboard
+        ↓
+Human can take over
+        ↓
+Dashboard works on mobile
+        ↓
+Production deployment works
+        ↓
+Client receives complete source code
+        ↓
+Client receives complete documentation
+```
+
+---
+
+# 89. Final Product Boundaries
+
+This project is:
+
+> **A custom WhatsApp customer-enquiry, lead-management and appointment automation system for a dermatology clinic.**
+
+It is NOT:
+
+> A doctor, diagnostic system, prescription system or medical decision-making system.
+
+The safer and commercially stronger product is therefore:
+
+```text
+WhatsApp
++
+AI conversational automation
++
+Clinic knowledge
++
+Lead management
++
+Appointment management
++
+Human handoff
++
+Dashboard
++
+Analytics
++
+Production deployment
++
+Full source-code handover
+```
+
+---
+
+# 90. Success Metric
+
+The most important business metrics are:
+
+```text
+Response time
+Enquiries captured
+Qualified leads
+Appointments booked
+Appointment completion rate
+No-show rate
+Human handoff rate
+```
+
+The product should ultimately demonstrate:
+
+> **More enquiries captured with less manual receptionist work.**
+
+---
+
+# 91. Recommended V1 Scope Lock
+
+For the first paid clinic, freeze the scope at:
+
+```text
+1 WhatsApp number
+1 clinic
+Up to agreed number of doctors
+Services management
+FAQ management
+AI agent
+Lead management
+Appointment management
+Human handoff
+Analytics
+Responsive dashboard
+Authentication
+Deployment
+Monitoring
+Backup
+Documentation
+Source-code handover
+30-day bug warranty
+```
+
+Everything beyond this is a change request.
+
+---
+
+# 92. Commercial Philosophy
+
+The client is buying:
+
+```text
+Software
++
+Implementation
++
+Deployment
++
+Configuration
++
+Documentation
++
+Source Code
+```
+
+The client is NOT buying:
+
+```text
+Unlimited future development
+Unlimited support
+Unlimited API costs
+Unlimited custom features
+Permanent free maintenance
+```
+
+This distinction must be reflected in the proposal and contract.

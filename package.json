@@ -1,0 +1,33 @@
+{
+  "name": "waani-whatsapp-agent",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Dermatology WhatsApp AI Lead & Appointment System",
+  "type": "module",
+  "workspaces": [
+    "apps/api",
+    "apps/web"
+  ],
+  "scripts": {
+    "dev": "concurrently \"npm run dev:api\" \"npm run dev:web\"",
+    "dev:api": "npm --workspace=apps/api run dev",
+    "dev:web": "npm --workspace=apps/web run dev",
+    "build": "npm --workspace=apps/web run build",
+    "start": "npm --workspace=apps/api run start",
+    "seed": "npm --workspace=apps/api run seed",
+    "test": "node tests/unit/all.test.js",
+    "test:eval": "node tests/evaluation/evaluator.js"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  },
+  "keywords": [
+    "whatsapp",
+    "ai-agent",
+    "dermatology",
+    "appointment-booking",
+    "lead-management"
+  ],
+  "author": "Antigravity",
+  "license": "ISC"
+}
