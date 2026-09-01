@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: derma_whatsapp_api
+    restart: unless-stopped
+    ports:
+      - "4000:4000"
+    environment:
+      - PORT=4000
+      - NODE_ENV=production
+      - JWT_SECRET=production_super_secret_jwt_key_32chars!
+      - WHATSAPP_PHONE_NUMBER_ID=${WHATSAPP_PHONE_NUMBER_ID}
+      - WHATSAPP_ACCESS_TOKEN=${WHATSAPP_ACCESS_TOKEN}
+      - WHATSAPP_VERIFY_TOKEN=${WHATSAPP_VERIFY_TOKEN}
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - ENABLE_GOOGLE_DOCS_SYNC=${ENABLE_GOOGLE_DOCS_SYNC:-true}
+      - GOOGLE_DOCS_DOCUMENT_ID=${GOOGLE_DOCS_DOCUMENT_ID}
+      - GOOGLE_SHEET_LEADS_DASHBOARD_ID=${GOOGLE_SHEET_LEADS_DASHBOARD_ID}
+    volumes:
+      - api_data:/app/apps/api/src/database
+
+volumes:
+  api_data:
