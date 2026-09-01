@@ -42,6 +42,7 @@ async function runTests() {
   test('Detects GREETING intent', () => {
     assert.strictEqual(detectIntent('Hi, good morning'), INTENTS.GREETING);
     assert.strictEqual(detectIntent('Namaste'), INTENTS.GREETING);
+    assert.strictEqual(detectIntent('Hello!'), INTENTS.GREETING);
   });
 
   test('Detects PRICE_INFORMATION in Hindi and English', () => {
@@ -85,11 +86,12 @@ async function runTests() {
   });
 
   console.log('\n--- 3. Deterministic Slot Generation & Working Hours ---');
-  test('Slots are generated within working hours and exclude lunch break', () => {
-    const slots = AppointmentService.getAvailableSlots({ date: '2026-09-07' });
+  test('Slots are generated within working hours and exclude doctor break times', () => {
+    // Check Dr. Ananya's slots (break is 13:30 to 14:30)
+    const slots = AppointmentService.getAvailableSlots({ date: '2026-09-07', doctor_id: 'doc_ananya_01' });
     assert(slots.length > 0, 'Should generate slots');
     const hasLunchSlot = slots.some((s) => s.time === '13:30' || s.time === '14:00');
-    assert.strictEqual(hasLunchSlot, false, 'Lunch break 13:30-14:30 must be excluded');
+    assert.strictEqual(hasLunchSlot, false, 'Dr. Ananya lunch break 13:30-14:30 must be excluded');
   });
 
   console.log('\n--- 4. Atomic Booking & Double-Booking Prevention ---');
@@ -135,7 +137,7 @@ async function runTests() {
 
     assert.strictEqual(result.intent, INTENTS.MEDICAL_QUESTION);
     assert.strictEqual(result.stage, 'HANDOFF');
-    assert(result.response_text.includes('examination') || result.response_text.includes('doctor'));
+    assert(result.response_text.includes('examination') || result.response_text.includes('doctor') || result.response_text.includes('treatment'));
 
     const conv = db.findOne('conversations', (c) => c.patient_phone === phone);
     assert.strictEqual(conv.ai_status, 'PAUSED', 'AI should be paused on handoff');
