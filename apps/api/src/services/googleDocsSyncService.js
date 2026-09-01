@@ -6,10 +6,10 @@ export class GoogleDocsSyncService {
    * Check if Google Docs integration is enabled via environment flag or database config.
    */
   static isEnabled() {
-    return (
-      config.googleDocs.enabled === true ||
-      db.data.google_docs_sync?.enabled === true
-    );
+    if (db.data.google_docs_sync && typeof db.data.google_docs_sync.enabled === 'boolean') {
+      return db.data.google_docs_sync.enabled;
+    }
+    return config.googleDocs.enabled === true;
   }
 
   /**
@@ -24,11 +24,13 @@ export class GoogleDocsSyncService {
       enabled: config.googleDocs.enabled
     };
 
+    const isCurrentlyEnabled = this.isEnabled();
+
     return {
-      enabled: this.isEnabled(),
+      enabled: isCurrentlyEnabled,
       doc_id: config.googleDocs.docId || syncData.doc_id || 'Not Configured',
       sheet_id: config.googleDocs.sheetId || syncData.sheet_id || 'Not Configured',
-      status: this.isEnabled() ? syncData.status || 'SYNCED' : 'DISABLED',
+      status: isCurrentlyEnabled ? syncData.status || 'SYNCED' : 'DISABLED',
       last_synced_at: syncData.last_synced_at,
       extracted_faqs_count: syncData.extracted_faqs_count || db.data.faqs.length,
       last_sync_message: syncData.last_sync_message || 'System ready.'
@@ -59,8 +61,6 @@ export class GoogleDocsSyncService {
 
   /**
    * Sync clinic knowledge and FAQs from Google Doc.
-   * If Google credentials are provided, reads directly from Google Docs API;
-   * otherwise parses clinic structured knowledge document reliably.
    */
   static async syncKnowledgeFromDoc({ docId, clinic_id = 'clinic_derma_care_01' }) {
     if (!this.isEnabled()) {
