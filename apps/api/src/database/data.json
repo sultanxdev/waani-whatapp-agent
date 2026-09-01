@@ -13,8 +13,8 @@
       "currency": "INR",
       "working_hours": "Monday to Saturday: 10:00 AM - 7:30 PM, Sunday: 10:00 AM - 2:00 PM",
       "emergency_instructions": "For severe acute allergic reactions or medical emergencies, please visit the nearest hospital emergency room immediately or call 112.",
-      "created_at": "2026-09-01T16:49:28.260Z",
-      "updated_at": "2026-09-01T16:49:28.260Z"
+      "created_at": "2026-09-01T16:55:29.865Z",
+      "updated_at": "2026-09-01T16:55:29.866Z"
     }
   ],
   "users": [
@@ -24,11 +24,11 @@
       "name": "Dr. Ananya Sharma",
       "email": "owner@dermacare.com",
       "phone": "+919876543210",
-      "password": "$2a$10$4uScbHkJfvNEzmib4oy/2eK3ag2kukuAPjQw54ZU244sn4WYKWt/q",
+      "password": "$2a$10$HUbaDs4lE7QVs8yf7MqPCuG52iQw0j8LOJ3/L8KNxA2bMPfilEeQm",
       "role": "OWNER",
       "status": "ACTIVE",
-      "created_at": "2026-09-01T16:49:28.354Z",
-      "updated_at": "2026-09-01T16:49:28.354Z"
+      "created_at": "2026-09-01T16:55:29.958Z",
+      "updated_at": "2026-09-01T16:55:29.958Z"
     },
     {
       "id": "user_staff_01",
@@ -36,11 +36,11 @@
       "name": "Pooja Verma (Receptionist)",
       "email": "reception@dermacare.com",
       "phone": "+919876543211",
-      "password": "$2a$10$4uScbHkJfvNEzmib4oy/2eK3ag2kukuAPjQw54ZU244sn4WYKWt/q",
+      "password": "$2a$10$HUbaDs4lE7QVs8yf7MqPCuG52iQw0j8LOJ3/L8KNxA2bMPfilEeQm",
       "role": "STAFF",
       "status": "ACTIVE",
-      "created_at": "2026-09-01T16:49:28.354Z",
-      "updated_at": "2026-09-01T16:49:28.354Z"
+      "created_at": "2026-09-01T16:55:29.958Z",
+      "updated_at": "2026-09-01T16:55:29.958Z"
     },
     {
       "id": "user_doctor_01",
@@ -48,11 +48,11 @@
       "name": "Dr. Vikram Kapoor",
       "email": "dr.vikram@dermacare.com",
       "phone": "+919876543212",
-      "password": "$2a$10$4uScbHkJfvNEzmib4oy/2eK3ag2kukuAPjQw54ZU244sn4WYKWt/q",
+      "password": "$2a$10$HUbaDs4lE7QVs8yf7MqPCuG52iQw0j8LOJ3/L8KNxA2bMPfilEeQm",
       "role": "DOCTOR",
       "status": "ACTIVE",
-      "created_at": "2026-09-01T16:49:28.354Z",
-      "updated_at": "2026-09-01T16:49:28.354Z"
+      "created_at": "2026-09-01T16:55:29.958Z",
+      "updated_at": "2026-09-01T16:55:29.958Z"
     },
     {
       "id": "user_admin_01",
@@ -60,11 +60,11 @@
       "name": "System Administrator",
       "email": "admin@system.local",
       "phone": "+919876543299",
-      "password": "$2a$10$4uScbHkJfvNEzmib4oy/2eK3ag2kukuAPjQw54ZU244sn4WYKWt/q",
+      "password": "$2a$10$HUbaDs4lE7QVs8yf7MqPCuG52iQw0j8LOJ3/L8KNxA2bMPfilEeQm",
       "role": "ADMIN",
       "status": "ACTIVE",
-      "created_at": "2026-09-01T16:49:28.354Z",
-      "updated_at": "2026-09-01T16:49:28.354Z"
+      "created_at": "2026-09-01T16:55:29.958Z",
+      "updated_at": "2026-09-01T16:55:29.958Z"
     }
   ],
   "doctors": [
@@ -91,8 +91,8 @@
       "working_end_time": "19:00",
       "break_start_time": "13:30",
       "break_end_time": "14:30",
-      "created_at": "2026-09-01T16:49:28.354Z",
-      "updated_at": "2026-09-01T16:49:28.354Z"
+      "created_at": "2026-09-01T16:55:29.958Z",
+      "updated_at": "2026-09-01T16:55:29.958Z"
     },
     {
       "id": "doc_vikram_02",
@@ -117,8 +117,8 @@
       "working_end_time": "19:30",
       "break_start_time": "14:00",
       "break_end_time": "15:00",
-      "created_at": "2026-09-01T16:49:28.354Z",
-      "updated_at": "2026-09-01T16:49:28.354Z"
+      "created_at": "2026-09-01T16:55:29.958Z",
+      "updated_at": "2026-09-01T16:55:29.958Z"
     }
   ],
   "doctor_availability": [],
@@ -134,8 +134,8 @@
       "is_active": true,
       "booking_enabled": true,
       "doctor_id": "doc_ananya_01",
-      "created_at": "2026-09-01T16:49:28.354Z",
-      "updated_at": "2026-09-01T16:49:28.354Z"
+      "created_at": "2026-09-01T16:55:29.958Z",
+      "updated_at": "2026-09-01T16:55:29.958Z"
     },
     {
       "id": "srv_hair_prp_02",
@@ -148,8 +148,8 @@
       "is_active": true,
       "booking_enabled": true,
       "doctor_id": "doc_vikram_02",
-      "created_at": "2026-09-01T16:49:28.354Z",
-      "updated_at": "2026-09-01T16:49:28.354Z"
+      "created_at": "2026-09-01T16:55:29.958Z",
+      "updated_at": "2026-09-01T16:55:29.958Z"
     },
     {
       "id": "srv_laser_carbon_03",
@@ -162,8 +162,8 @@
       "is_active": true,
       "booking_enabled": true,
       "doctor_id": "doc_ananya_01",
-      "created_at": "2026-09-01T16:49:28.354Z",
-      "updated_at": "2026-09-01T16:49:28.354Z"
+      "created_at": "2026-09-01T16:55:29.958Z",
+      "updated_at": "2026-09-01T16:55:29.958Z"
     },
     {
       "id": "srv_chemical_peel_04",
@@ -176,8 +176,8 @@
       "is_active": true,
       "booking_enabled": true,
       "doctor_id": "doc_ananya_01",
-      "created_at": "2026-09-01T16:49:28.354Z",
-      "updated_at": "2026-09-01T16:49:28.354Z"
+      "created_at": "2026-09-01T16:55:29.958Z",
+      "updated_at": "2026-09-01T16:55:29.958Z"
     },
     {
       "id": "srv_acne_scar_05",
@@ -190,8 +190,8 @@
       "is_active": true,
       "booking_enabled": true,
       "doctor_id": "doc_ananya_01",
-      "created_at": "2026-09-01T16:49:28.354Z",
-      "updated_at": "2026-09-01T16:49:28.354Z"
+      "created_at": "2026-09-01T16:55:29.958Z",
+      "updated_at": "2026-09-01T16:55:29.958Z"
     },
     {
       "id": "srv_hydrafacial_06",
@@ -204,8 +204,8 @@
       "is_active": true,
       "booking_enabled": true,
       "doctor_id": "doc_ananya_01",
-      "created_at": "2026-09-01T16:49:28.354Z",
-      "updated_at": "2026-09-01T16:49:28.354Z"
+      "created_at": "2026-09-01T16:55:29.958Z",
+      "updated_at": "2026-09-01T16:55:29.958Z"
     }
   ],
   "faqs": [
@@ -217,7 +217,7 @@
       "answer": "Our initial in-person consultation fee is ₹800 with our senior dermatologists (Dr. Ananya Sharma / Dr. Vikram Kapoor).",
       "approved": true,
       "is_active": true,
-      "created_at": "2026-09-01T16:49:28.354Z"
+      "created_at": "2026-09-01T16:55:29.958Z"
     },
     {
       "id": "faq_02",
@@ -227,7 +227,7 @@
       "answer": "We are open Monday to Saturday from 10:00 AM to 7:30 PM, and Sunday from 10:00 AM to 2:00 PM. Our address is Suite 402, DLF Cyber City, Sector 24, Gurugram (Near Cyber Hub Metro Station).",
       "approved": true,
       "is_active": true,
-      "created_at": "2026-09-01T16:49:28.354Z"
+      "created_at": "2026-09-01T16:55:29.958Z"
     },
     {
       "id": "faq_03",
@@ -237,7 +237,7 @@
       "answer": "Most patients require 4 to 6 sessions spaced 4 weeks apart for optimal hair regrowth, followed by maintenance sessions every 6 months. The exact protocol is personalized during consultation.",
       "approved": true,
       "is_active": true,
-      "created_at": "2026-09-01T16:49:28.354Z"
+      "created_at": "2026-09-01T16:55:29.958Z"
     },
     {
       "id": "faq_04",
@@ -247,7 +247,7 @@
       "answer": "Please come with a clean face free of heavy makeup. Bring any previous prescription slips or skin care products you currently use.",
       "approved": true,
       "is_active": true,
-      "created_at": "2026-09-01T16:49:28.354Z"
+      "created_at": "2026-09-01T16:55:29.958Z"
     },
     {
       "id": "faq_05",
@@ -257,7 +257,7 @@
       "answer": "We accept UPI (GPay, PhonePe, Paytm), Credit/Debit Cards, Net Banking, and Cash at the clinic reception.",
       "approved": true,
       "is_active": true,
-      "created_at": "2026-09-01T16:49:28.354Z"
+      "created_at": "2026-09-01T16:55:29.958Z"
     }
   ],
   "leads": [
@@ -273,8 +273,8 @@
       "status": "BOOKED",
       "assigned_to": "user_staff_01",
       "notes": "Has active cystic acne for 6 months. Scheduled for Saturday 2:30 PM.",
-      "created_at": "2026-08-31T16:49:28.354Z",
-      "updated_at": "2026-09-01T16:49:28.354Z"
+      "created_at": "2026-08-31T16:55:29.958Z",
+      "updated_at": "2026-09-01T16:55:29.958Z"
     },
     {
       "id": "lead_02",
@@ -288,8 +288,8 @@
       "status": "QUALIFIED",
       "assigned_to": "user_staff_01",
       "notes": "Inquired about PRP cost and package discounts. Interested in booking for next week.",
-      "created_at": "2026-09-01T04:49:28.354Z",
-      "updated_at": "2026-09-01T16:49:28.354Z"
+      "created_at": "2026-09-01T04:55:29.958Z",
+      "updated_at": "2026-09-01T16:55:29.958Z"
     },
     {
       "id": "lead_03",
@@ -303,8 +303,8 @@
       "status": "CONTACTED",
       "assigned_to": "user_staff_01",
       "notes": "Asked about post-procedure downtime. Escalated to clinic staff.",
-      "created_at": "2026-09-01T12:49:28.354Z",
-      "updated_at": "2026-09-01T16:49:28.354Z"
+      "created_at": "2026-09-01T12:55:29.958Z",
+      "updated_at": "2026-09-01T16:55:29.958Z"
     },
     {
       "id": "lead_04",
@@ -318,8 +318,8 @@
       "status": "NEW",
       "assigned_to": "user_staff_01",
       "notes": "Wedding next month, wants skin rejuvenation protocol.",
-      "created_at": "2026-09-01T14:49:28.354Z",
-      "updated_at": "2026-09-01T16:49:28.354Z"
+      "created_at": "2026-09-01T14:55:29.958Z",
+      "updated_at": "2026-09-01T16:55:29.958Z"
     }
   ],
   "conversations": [
@@ -333,10 +333,10 @@
       "stage": "CONFIRMATION",
       "last_message": "Your appointment has been confirmed for 2:30 PM with Dr. Ananya Sharma.",
       "last_intent": "APPOINTMENT_BOOKING",
-      "last_customer_message_at": "2026-09-01T16:49:28.354Z",
+      "last_customer_message_at": "2026-09-01T16:55:29.959Z",
       "unread_count": 0,
-      "created_at": "2026-09-01T15:49:28.354Z",
-      "updated_at": "2026-09-01T16:49:28.354Z"
+      "created_at": "2026-09-01T15:55:29.959Z",
+      "updated_at": "2026-09-01T16:55:29.959Z"
     },
     {
       "id": "conv_02",
@@ -348,10 +348,10 @@
       "stage": "HANDOFF",
       "last_message": "Main aapko clinic team se connect kar raha hoon.",
       "last_intent": "MEDICAL_QUESTION",
-      "last_customer_message_at": "2026-09-01T16:19:28.354Z",
+      "last_customer_message_at": "2026-09-01T16:25:29.959Z",
       "unread_count": 1,
-      "created_at": "2026-09-01T14:49:28.354Z",
-      "updated_at": "2026-09-01T16:49:28.354Z"
+      "created_at": "2026-09-01T14:55:29.959Z",
+      "updated_at": "2026-09-01T16:55:29.959Z"
     }
   ],
   "messages": [
@@ -361,7 +361,7 @@
       "sender": "CUSTOMER",
       "wa_message_id": "wamid_sample_001",
       "text": "Hi, I need acne treatment consultation.",
-      "timestamp": "2026-09-01T16:19:28.354Z"
+      "timestamp": "2026-09-01T16:25:29.959Z"
     },
     {
       "id": "msg_02",
@@ -369,7 +369,7 @@
       "sender": "AI",
       "wa_message_id": "wamid_out_001",
       "text": "Welcome to DermaCare Clinic! We provide specialist dermatologist consultations for acne & breakouts. Would you like to check doctor availability or book an appointment?",
-      "timestamp": "2026-09-01T16:19:38.354Z"
+      "timestamp": "2026-09-01T16:25:39.959Z"
     },
     {
       "id": "msg_03",
@@ -377,7 +377,7 @@
       "sender": "CUSTOMER",
       "wa_message_id": "wamid_sample_002",
       "text": "Mere face par red patches aur itching hai, kaunsi hydrocortisone cream lagaun?",
-      "timestamp": "2026-09-01T16:34:28.354Z"
+      "timestamp": "2026-09-01T16:40:29.959Z"
     },
     {
       "id": "msg_04",
@@ -385,7 +385,7 @@
       "sender": "AI",
       "wa_message_id": "wamid_out_002",
       "text": "Yeh diagnosis aur prescription doctor ke examination par depend karta hai. Main medication advise nahi kar sakta. Main aapko clinic team se connect kar raha hoon.",
-      "timestamp": "2026-09-01T16:34:38.354Z"
+      "timestamp": "2026-09-01T16:40:39.959Z"
     }
   ],
   "appointments": [
@@ -404,8 +404,8 @@
       "duration": 30,
       "status": "CONFIRMED",
       "notes": "First time consultation for acne.",
-      "created_at": "2026-09-01T16:49:28.354Z",
-      "updated_at": "2026-09-01T16:49:28.354Z"
+      "created_at": "2026-09-01T16:55:29.958Z",
+      "updated_at": "2026-09-01T16:55:29.959Z"
     },
     {
       "id": "apt_02",
@@ -422,8 +422,8 @@
       "duration": 45,
       "status": "CONFIRMED",
       "notes": "Session 2 of 4 PRP package.",
-      "created_at": "2026-09-01T16:49:28.354Z",
-      "updated_at": "2026-09-01T16:49:28.354Z"
+      "created_at": "2026-09-01T16:55:29.959Z",
+      "updated_at": "2026-09-01T16:55:29.959Z"
     }
   ],
   "appointment_slots": [],
@@ -437,8 +437,8 @@
       "reason": "Medical question regarding hydrocortisone cream recommendation",
       "status": "PENDING",
       "assigned_to": "user_staff_01",
-      "created_at": "2026-09-01T16:34:28.354Z",
-      "updated_at": "2026-09-01T16:49:28.354Z"
+      "created_at": "2026-09-01T16:40:29.959Z",
+      "updated_at": "2026-09-01T16:55:29.959Z"
     }
   ],
   "whatsapp_accounts": [
@@ -451,7 +451,7 @@
       "quality_rating": "GREEN",
       "webhook_verified": true,
       "status": "CONNECTED",
-      "created_at": "2026-09-01T16:49:28.354Z"
+      "created_at": "2026-09-01T16:55:29.959Z"
     }
   ],
   "whatsapp_messages": [],
@@ -597,10 +597,87 @@
       "before": null,
       "after": "{\"faqs_synced\":6,\"doc_id\":\"test_doc_123\"}",
       "ip": "127.0.0.1"
+    },
+    {
+      "id": "audit_logs_1788281729316_hrpkru",
+      "created_at": "2026-09-01T16:55:29.316Z",
+      "updated_at": "2026-09-01T16:55:29.316Z",
+      "user_id": "ai_system",
+      "clinic_id": "clinic_derma_care_01",
+      "action": "APPOINTMENT_CREATED",
+      "entity": "appointments",
+      "entity_id": "appointments_1788281729314_qyfrkr",
+      "before": null,
+      "after": "{\"id\":\"appointments_1788281729314_qyfrkr\",\"created_at\":\"2026-09-01T16:55:29.314Z\",\"updated_at\":\"2026-09-01T16:55:29.314Z\",\"clinic_id\":\"clinic_derma_care_01\",\"lead_id\":null,\"patient_name\":\"Patient One\",\"patient_phone\":\"+919999000001\",\"doctor_id\":\"doc_ananya_01\",\"doctor_name\":\"Dr. Ananya Sharma\",\"service_id\":\"srv_acne_01\",\"service_name\":\"Acne & Breakouts Consultation\",\"date\":\"2026-09-15\",\"time\":\"11:30\",\"duration\":30,\"status\":\"CONFIRMED\",\"notes\":\"\"}",
+      "ip": "127.0.0.1"
+    },
+    {
+      "id": "audit_logs_1788281729322_fshnlq",
+      "created_at": "2026-09-01T16:55:29.322Z",
+      "updated_at": "2026-09-01T16:55:29.322Z",
+      "user_id": "ai_system",
+      "clinic_id": "clinic_derma_care_01",
+      "action": "HUMAN_HANDOFF_TRIGGERED",
+      "entity": "handoffs",
+      "entity_id": "handoffs_1788281729321_tyfsi6",
+      "before": null,
+      "after": "{\"id\":\"handoffs_1788281729321_tyfsi6\",\"created_at\":\"2026-09-01T16:55:29.321Z\",\"updated_at\":\"2026-09-01T16:55:29.321Z\",\"clinic_id\":\"clinic_derma_care_01\",\"conversation_id\":\"conversations_1788281729319_yjqb1m\",\"patient_name\":\"Test Patient\",\"patient_phone\":\"+919888777666\",\"reason\":\"Medical query: \\\"Mere face par red rash hai kaunsi steroid cream lagau?\\\"\",\"status\":\"PENDING\",\"assigned_to\":\"user_staff_01\"}",
+      "ip": "127.0.0.1"
+    },
+    {
+      "id": "audit_logs_1788281729324_yo6aj6",
+      "created_at": "2026-09-01T16:55:29.324Z",
+      "updated_at": "2026-09-01T16:55:29.324Z",
+      "user_id": "admin",
+      "clinic_id": "clinic_derma_care_01",
+      "action": "GOOGLE_DOCS_SYNC_ENABLED",
+      "entity": "settings",
+      "entity_id": "google_docs_sync",
+      "before": null,
+      "after": "{\"enabled\":true}",
+      "ip": "127.0.0.1"
+    },
+    {
+      "id": "audit_logs_1788281729326_0pi7c5",
+      "created_at": "2026-09-01T16:55:29.326Z",
+      "updated_at": "2026-09-01T16:55:29.326Z",
+      "user_id": "admin",
+      "clinic_id": "clinic_derma_care_01",
+      "action": "GOOGLE_DOCS_SYNC_DISABLED",
+      "entity": "settings",
+      "entity_id": "google_docs_sync",
+      "before": null,
+      "after": "{\"enabled\":false}",
+      "ip": "127.0.0.1"
+    },
+    {
+      "id": "audit_logs_1788281729327_ykb28s",
+      "created_at": "2026-09-01T16:55:29.327Z",
+      "updated_at": "2026-09-01T16:55:29.327Z",
+      "user_id": "admin",
+      "clinic_id": "clinic_derma_care_01",
+      "action": "GOOGLE_DOCS_SYNC_ENABLED",
+      "entity": "settings",
+      "entity_id": "google_docs_sync",
+      "before": null,
+      "after": "{\"enabled\":true}",
+      "ip": "127.0.0.1"
+    },
+    {
+      "id": "audit_logs_1788281729333_2rjd9w",
+      "created_at": "2026-09-01T16:55:29.333Z",
+      "updated_at": "2026-09-01T16:55:29.333Z",
+      "user_id": "system",
+      "clinic_id": "clinic_derma_care_01",
+      "action": "GOOGLE_DOCS_KNOWLEDGE_SYNC",
+      "entity": "faqs",
+      "before": null,
+      "after": "{\"faqs_synced\":6,\"doc_id\":\"test_doc_123\"}",
+      "ip": "127.0.0.1"
     }
   ],
   "google_docs_sync": {
-    "last_synced_at": "2026-09-01T14:49:28.354Z",
+    "last_synced_at": "2026-09-01T14:55:29.959Z",
     "status": "SYNCED",
     "doc_id": "1_sample_google_doc_id_for_clinic_knowledge_base",
     "sheet_id": "1_sample_google_sheet_id_for_live_lead_stream",
