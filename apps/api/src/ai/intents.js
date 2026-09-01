@@ -22,7 +22,8 @@ export const INTENTS = {
  * Fast deterministic intent classifier with support for English, Hindi, and Hinglish.
  */
 export function detectIntent(text = '') {
-  const clean = text.toLowerCase().trim();
+  // Normalize punctuation and spacing
+  const clean = text.toLowerCase().replace(/[,.!?]/g, ' ').replace(/\s+/g, ' ').trim();
 
   // 1. Emergency Signal (Highest Priority)
   if (
@@ -178,7 +179,7 @@ export function detectIntent(text = '') {
   // 11. Doctor Information
   if (
     clean.includes('doctor') ||
-    clean.includes('dr.') ||
+    clean.includes('dr ') ||
     clean.includes('dermatologist') ||
     clean.includes('specialist') ||
     clean.includes('qualification') ||
@@ -212,28 +213,17 @@ export function detectIntent(text = '') {
 
   // 13. Clinic Information
   if (
-    clean.includes('clinic') ||
     clean.includes('about clinic') ||
     clean.includes('dermacare') ||
-    clean.includes('contact') ||
     clean.includes('phone number') ||
     clean.includes('email')
   ) {
     return INTENTS.CLINIC_INFORMATION;
   }
 
-  // 14. Greeting
-  if (
-    clean === 'hi' ||
-    clean === 'hello' ||
-    clean === 'hey' ||
-    clean === 'namaste' ||
-    clean === 'good morning' ||
-    clean === 'good evening' ||
-    clean.startsWith('hi ') ||
-    clean.startsWith('hello ') ||
-    clean.startsWith('hey ')
-  ) {
+  // 14. Greeting (Support words & phrases)
+  const greetingWords = ['hi', 'hello', 'hey', 'namaste', 'good morning', 'good afternoon', 'good evening', 'hola'];
+  if (greetingWords.some((w) => clean === w || clean.startsWith(w + ' '))) {
     return INTENTS.GREETING;
   }
 
